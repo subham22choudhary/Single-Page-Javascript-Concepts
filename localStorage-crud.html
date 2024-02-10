@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Operation</title>
+</head>
+
+<body>
+
+    <style>
+        body {
+            background-color: rgb(239, 171, 62);
+        }
+
+        .a {
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .h2 {
+            color: black;
+        }
+
+        .mb-1 {
+            margin-bottom: 4rem;
+        }
+    </style>
+
+    <div class="a">
+        <h2 class="h2">Crud Operation</h2>
+
+        <div>
+            <input type="text" name="name" id="crudInput" class="input">
+
+            <button class="add" id="addid" onclick="Add()">Add</button>
+
+            <button class="edit" id="editid" onclick="Edit()">Edit</button>
+
+            <button class="delete" id="deleteid" onclick="Delete()">Delete</button>
+        </div>
+
+        <div>
+            <ul class="list-item"> </ul>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        const addingdata = document.getElementById("crudInput");
+
+
+
+        function Add() {
+            const addvalue = addingdata.value;
+            localStorage.setItem('firstName', addvalue);
+            console.log(addvalue);
+            console.log(localStorage);
+
+        }
+
+
+
+
+        function Edit() {
+            const addvalue = addingdata.value;
+            localStorage.setItem('firstName', addvalue);
+        }
+
+
+
+        function Delete() {
+            const addvalue = addingdata.value;
+            localStorage.removeItem('firstName', addvalue);
+            localStorage.removeItem(addvalue, addvalue);
+        }
+
+
+    </script>
+
+</body>
+
+</html>
