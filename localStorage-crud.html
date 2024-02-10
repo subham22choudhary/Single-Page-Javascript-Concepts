@@ -60,8 +60,10 @@
         function Add() {
             const addvalue = addingdata.value;
             localStorage.setItem('firstName', addvalue);
+            sessionStorage.setItem('firstName', addvalue);
             console.log(addvalue);
             console.log(localStorage);
+            console.log(sessionStorage);
 
         }
 
@@ -71,6 +73,7 @@
         function Edit() {
             const addvalue = addingdata.value;
             localStorage.setItem('firstName', addvalue);
+            sessionStorage.setItem('firstName', addvalue);
         }
 
 
@@ -78,7 +81,8 @@
         function Delete() {
             const addvalue = addingdata.value;
             localStorage.removeItem('firstName', addvalue);
-            localStorage.removeItem(addvalue, addvalue);
+            sessionStorage.removeItem('firstName', addvalue);
+
         }
 
 
