@@ -10,8 +10,6 @@
 
 <body>
 
-
-
     <style>
         #errorText {
             color: red;
@@ -34,23 +32,18 @@
         <p style="display: none;" id="errorText">Please fill the required fields*</p>
     </form>
 
-
-
     <div id="submitDiv" style="display: none;">
         <h4>Thank you!</h4>
     </div>
 
     <script>
 
-        console.log("Hello Bhai! Thanks for checking my code")
-
-
+        console.log("Hello Bhai! Thanks for checking my code");
 
         function validateForm() {
 
             let a = document.getElementById("formData");
             let b = document.getElementById("submitDiv");
-
 
             let x = document.getElementById("firstName").value;
             let y = document.getElementById("secondName").value;
@@ -58,8 +51,11 @@
 
             let c = document.getElementById("emailField").value;
 
+            localStorage.setItem('firstName', x);
+            localStorage.setItem('secondName', y);
+            localStorage.setItem('emailField', c);
 
-            let emailRegex = /^[a-zA-Z0-9._%+-]+@(?!gmail\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            let emailRegex = /^[a-zA-Z0-9._%+-]+@(?!gmail\.com|bubble\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
             if (x == "" && y == "" || !c.match(emailRegex)) {
                 z.style.display = "block";
@@ -70,6 +66,7 @@
                 b.style.display = "block"
                 return false;
             }
+
         }
 
     </script>
