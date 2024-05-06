@@ -5,18 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choudhary's Js Form</title>
+    <title>Portal</title>
 </head>
 
 <body>
-
 
     <style>
         .form-parent-card {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
+            height: 95vh;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .submit-cta {
+            animation: 1s ease-out 0s 1 slideInLeft;
         }
 
         .form-card {
@@ -44,22 +57,24 @@
             font-size: 0.9rem;
             color: #09090a;
             background-color: #b7dc34;
-            border-radius: 8px;
             padding: 5px 20px;
             font-weight: 600;
             cursor: pointer;
             border: 2px solid #b7dc34;
+            transition: all 0.3s ease;
         }
 
         button.submit-cta:hover {
             color: #b7dc34;
             background-color: #09090a;
-
+            border-radius: 8px;
         }
 
         #fullName,
         #email,
+        #email1,
         #phoneNumber,
+        #phoneNumber1,
         #message {
             display: none;
         }
@@ -72,21 +87,70 @@
         }
     </style>
 
-
     <script>
-
-
-
 
         function validateForm() {
 
+            // Full Name
+            let a = document.getElementById("fullName");
+            let a1 = document.forms["formMain"]["fullName"].value;
+
+            if (a1 == "" || a1 == null) {
+                a.style.display = "block";
+                return false;
+            }
+
+
+            // Email
             let f = document.getElementById("email");
+            let x0 = document.getElementById("email1");
             const x = document.forms["formMain"]["eMail"].value;
 
             if (x == "" || x == null) {
                 f.style.display = "block";
                 return false;
             }
+
+            var atposition = x.indexOf("@");
+            var dotposition = x.lastIndexOf(".");
+            if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= x.length) {
+                x0.style.display = "block";
+                f.style.display = "none";
+                return false;
+            }
+
+
+
+            // Phone Number
+            var phoneNumberInput = document.forms["formMain"]["phone"].value;
+            var phoneNumberError = document.getElementById("phoneNumber");
+            var phoneNumberError1 = document.getElementById("phoneNumber1");
+
+            // Check if phone number is empty
+            if (phoneNumberInput === "") {
+                phoneNumberError.style.display = "block";
+                phoneNumberError1.style.display = "none";
+                return false;
+            }
+
+            // Check if phone number is less than 10 characters or contains non-numeric characters
+            if (phoneNumberInput.length < 10 || !(/^\d+$/.test(phoneNumberInput))) {
+                phoneNumberError.style.display = "none";
+                phoneNumberError1.style.display = "block";
+                return false;
+            }
+
+            // Reset errors if validation passes
+            phoneNumberError.style.display = "none";
+            phoneNumberError1.style.display = "none";
+
+            // If all validation passes, the form can be submitted
+            return true;
+
+
+
+
+
         }
 
 
@@ -100,26 +164,28 @@
             <label class="label-text">Full Name</label>
             <div class="input-text">
                 <input type="text" class="full-name" name="fullName" placeholder="Full Name" value="">
-                <p id="fullName" class="error-message">Please enter the Full Name*</p>
+                <p id="fullName" class="error-message">Please enter the required field*</p>
             </div>
 
             <label class="label-text">Email</label>
             <div class="input-text">
                 <input type="text" class="email" name="eMail" placeholder="Email ID">
+                <p id="email1" class="error-message">Please enter the valid email address*</p>
                 <p id="email" class="error-message">Please enter the Email*</p>
             </div>
 
 
             <label class="label-text">Phone</label>
             <div class="input-text">
-                <input type="text" class="phone" placeholder="Phone Number" name="pHone">
+                <input type="text" class="phone" placeholder="Phone Number" name="phone">
                 <p id="phoneNumber" class="error-message">Please enter the Phone Number*</p>
+                <p id="phoneNumber1" class="error-message">Please enter the valid Phone Number*</p>
             </div>
 
 
             <label class="label-text">Message</label>
             <div class="input-text">
-                <textarea placeholder="Message" class="text-message" name="tExt"></textarea>
+                <textarea placeholder="Message" class="text-message" name="text"></textarea>
                 <p id="message" class="error-message">Please enter the Message*</p>
             </div>
 
@@ -127,15 +193,6 @@
             <button class="submit-cta" type="submit" onclick="formSubmit()">Submit</button>
         </form>
     </div>
-
-
-
-
-    <script>
-
-
-
-    </script>
 
 </body>
 
